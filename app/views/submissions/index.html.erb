@@ -1,0 +1,5 @@
+<h1>SUBMISSIONS</h1>
+<% @submissions.each do |submission| %>
+  <%= content_tag :p, submission.body %>
+  <%= content_tag :p, submission.email %>
+<% end %>
