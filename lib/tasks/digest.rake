@@ -1,6 +1,8 @@
 namespace :digest do
   desc "Delivers Daily Digest"
   task :deliver => :environment do
-     DigestMailer.daily_digest.deliver
+    Organization.all.each do |org|
+      DigestMailer.daily_digest(org.id).deliver
+    end
   end
 end
