@@ -1,0 +1,10 @@
+Your daily digest for <%= Time.now.strftime("%B %d %Y") %>
+===========================
+
+<% @submissions.each do |submission| %>
+From <%= submission.email %>
+Body:
+<%= submission.body %>
+-----------------------
+
+<% end %>
