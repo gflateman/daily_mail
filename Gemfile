@@ -32,6 +32,7 @@ end
 
 gem 'griddler'
 gem "letter_opener", :group => :development
+gem 'chronic'
 # gem 'byebug'
 
 # Use ActiveModel has_secure_password

@@ -1,9 +1,11 @@
 class DigestMailer < ActionMailer::Base
-  default from: "digest@richardpic.com"
+  default from: "no-reply@richardpic.com"
 
-  def daily_digest(org_id)
+  def digest(org_id, since)
     @org = Organization.find(org_id)
-    @submissions = @org.submissions.where('created_at >= ?', 1.day.ago)
-    mail(to: @org.recipient_emails.join(','), subject: "Casper Digest #{Time.now.strftime("%D")}")
+    @submissions = @org.submissions.where('created_at >= ?', since)
+    mail(from: "#{@org.address}@richardpic.com",
+        to: @org.recipient_emails.join(','),
+        subject: "#{@org.name} Digest #{Time.now.strftime("%D")}")
   end
 end
