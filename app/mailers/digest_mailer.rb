@@ -1,9 +1,9 @@
 class DigestMailer < ActionMailer::Base
   default from: "no-reply@richardpic.com"
 
-  def digest(org_id, since)
+  def digest(org_id)
     @org = Organization.find(org_id)
-    @submissions = @org.submissions.where('created_at >= ?', since)
+    @submissions = @org.unsent_submissions
     mail(from: "#{@org.address}@richardpic.com",
         to: @org.recipient_emails.join(','),
         subject: "#{@org.name} Digest #{Time.now.strftime("%D")}")

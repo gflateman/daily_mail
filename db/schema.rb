@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107202753) do
+ActiveRecord::Schema.define(version: 20140108215641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "organizations", force: true do |t|
     t.string   "address"
-    t.text     "recipient_emails", default: [], array: true
-    t.text     "member_emails",    default: [], array: true
+    t.text     "recipient_emails",     default: [],                    array: true
+    t.text     "member_emails",        default: [],                    array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.datetime "last_digest_delivery", default: '2014-01-08 22:00:52'
   end
 
   add_index "organizations", ["member_emails"], name: "index_organizations_on_member_emails", using: :gin
