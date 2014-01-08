@@ -1,6 +1,9 @@
 DailyMail::Application.routes.draw do
-  root 'submissions#index'
-  resources :submissions
+  devise_for :users
+  resources :organizations do
+    resources :submissions
+  end
+  root 'organizations#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

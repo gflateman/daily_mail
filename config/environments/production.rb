@@ -72,6 +72,8 @@ DailyMail::Application.configure do
     :domain =>         'richardpic.com',
     :authentication => :plain
   }
+  config.action_mailer.default_url_options = { host: 'http://www.richardpic.com' }
+
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
