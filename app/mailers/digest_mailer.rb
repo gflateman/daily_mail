@@ -9,10 +9,10 @@ class DigestMailer < ActionMailer::Base
         subject: "#{@org.name} Digest #{Time.now.strftime("%D")}")
   end
 
-  def reminder(org_id, emails_arr)
+  def reminder(org_id)
     @org = Organization.find(org_id)
     mail(from: "#{@org.address}@richardpic.com",
-        to: emails_arr.join(','),
+        to: @org.unsubmitted_emails.join(','),
         subject: "Submission Reminder for #{@org.name}")
   end
 end
