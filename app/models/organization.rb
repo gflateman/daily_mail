@@ -14,8 +14,7 @@ class Organization < ActiveRecord::Base
   end
 
   def should_deliver_digest?(date)
-    # TODO: robustify
-    date.saturday? or date.sunday?
+    !date.saturday? and !date.sunday?
   end
 
   def deliver_digest
