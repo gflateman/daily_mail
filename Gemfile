@@ -32,8 +32,11 @@ end
 
 gem 'griddler'
 gem "letter_opener", :group => :development
+gem 'rspec-rails', group: :development
 gem 'chronic'
 gem 'devise'
+gem 'factory_girl_rails'
+gem 'faker'
 # gem 'byebug'
 
 # Use ActiveModel has_secure_password

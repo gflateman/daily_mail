@@ -6,3 +6,7 @@ common: &common
 development:
   <<: *common
   database: daily_mail_development
+
+test:
+  <<: *common
+  database: daily_mail_test

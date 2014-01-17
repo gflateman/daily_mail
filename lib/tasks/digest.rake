@@ -3,14 +3,16 @@ namespace :digest do
   desc "Delivers Daily Digest"
   task :deliver => :environment do
     Organization.all.each do |org|
-      org.deliver_digest if org.should_deliver_digest?(Date.today)
+      digest = org.current_digest
+      digest.deliver if digest.deliverable?
     end
   end
 
   desc "Delivers Daily Digest Reminder"
   task :reminder => :environment do
     Organization.all.each do |org|
-      org.deliver_reminder if org.should_deliver_digest?(Date.tomorrow)
+      digest = org.current_digest
+      digest.send_reminder if digest.remindable?
     end
   end
 

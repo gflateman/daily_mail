@@ -11,19 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108215641) do
+ActiveRecord::Schema.define(version: 20140115213125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "daily_digests", force: true do |t|
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "delivered_at"
+    t.string   "state",           default: "active"
+  end
+
+  add_index "daily_digests", ["organization_id"], name: "index_daily_digests_on_organization_id", using: :btree
+
   create_table "organizations", force: true do |t|
     t.string   "address"
-    t.text     "recipient_emails",     default: [],                    array: true
-    t.text     "member_emails",        default: [],                    array: true
+    t.text     "recipient_emails", default: [], array: true
+    t.text     "member_emails",    default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.datetime "last_digest_delivery", default: '2014-01-08 22:00:52'
   end
 
   add_index "organizations", ["member_emails"], name: "index_organizations_on_member_emails", using: :gin
@@ -34,10 +43,10 @@ ActiveRecord::Schema.define(version: 20140108215641) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organization_id"
+    t.integer  "daily_digest_id"
   end
 
-  add_index "submissions", ["organization_id"], name: "index_submissions_on_organization_id", using: :btree
+  add_index "submissions", ["daily_digest_id"], name: "index_submissions_on_daily_digest_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,29 +1,12 @@
 class Organization < ActiveRecord::Base
-  has_many :submissions
+  has_many :daily_digests
 
-  def unsent_submissions
-    self.submissions.where('created_at >= ?', self.last_digest_delivery).order(:email)
-  end
-
-  def submitted_emails
-    self.unsent_submissions.pluck(:email).uniq
-  end
-
-  def unsubmitted_emails
-    self.member_emails - self.submitted_emails
-  end
-
-  def should_deliver_digest?(date)
-    !date.saturday? and !date.sunday?
-  end
-
-  def deliver_digest
-    DigestMailer.digest(self.id).deliver
-    self.update_attributes last_digest_delivery: Time.now
-  end
-
-  def deliver_reminder
-    DigestMailer.reminder(self.id).deliver
+  def current_digest
+    if (digest = self.daily_digests.active.first)
+      digest
+    else
+      self.daily_digests.create!
+    end
   end
 
 end

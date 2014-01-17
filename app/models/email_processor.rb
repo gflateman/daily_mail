@@ -4,9 +4,11 @@ class EmailProcessor
     # TODO: send delivery failure email here
     return unless org && org.member_emails.include?(email.from)
 
-    existing_submission = org.unsent_submissions.find_by_email(email.from)
+    digest = org.current_digest
+
+    existing_submission = digest.submissions.find_by_email(email.from)
     if existing_submission.nil?
-      org.submissions.create! body: email.body, email: email.from
+      digest.submissions.create! body: email.body, email: email.from
     else
       existing_submission.body += "\n\n#{email.body}"
       existing_submission.save!
