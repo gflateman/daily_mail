@@ -21,12 +21,12 @@ class DailyDigest < ActiveRecord::Base
     DigestMailer.reminder(self).deliver
   end
 
-  def deliverable?(date = Date.today)
+  def deliverable?(date = Date.current)
     !date.saturday? and !date.sunday?
   end
 
   def remindable?
-    self.deliverable?(Date.tomorrow)
+    self.deliverable?(Date.current.tomorrow)
   end
 
 end
