@@ -16,12 +16,4 @@ namespace :digest do
     end
   end
 
-  task :test => :environment do
-    Organization.all.each do |org|
-      digest = org.current_digest
-      puts digest.deliverable?
-      puts digest.remindable?
-    end
-  end
-
 end
