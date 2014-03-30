@@ -39,6 +39,7 @@ gem 'cancan'
 gem 'rails_admin'
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'rails_12factor', group: :production
 # gem 'byebug'
 
 # Use ActiveModel has_secure_password
