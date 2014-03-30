@@ -35,6 +35,8 @@ gem "letter_opener", :group => :development
 gem 'rspec-rails', group: :development
 gem 'chronic'
 gem 'devise'
+gem 'cancan'
+gem 'rails_admin'
 gem 'factory_girl_rails'
 gem 'faker'
 # gem 'byebug'
