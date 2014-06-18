@@ -31,6 +31,7 @@ group :doc do
 end
 
 gem 'griddler'
+gem 'griddler-mandrill', github: 'wingrunr21/griddler-mandrill'
 gem "letter_opener", :group => :development
 gem 'rspec-rails', group: :development
 gem 'chronic'
