@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/wingrunr21/griddler-mandrill.git
-  revision: 602520dd215722b1c3ba58c94610d1a7130977cd
-  specs:
-    griddler-mandrill (1.0.0)
-      griddler
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -200,7 +193,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   griddler
-  griddler-mandrill!
   jbuilder (~> 1.2)
   jquery-rails
   letter_opener
