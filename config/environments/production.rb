@@ -69,10 +69,10 @@ DailyMail::Application.configure do
     :address =>        'smtp.mandrillapp.com',
     :user_name =>      ENV['MANDRILL_USERNAME'],
     :password =>       ENV['MANDRILL_APIKEY'],
-    :domain =>         'richardpic.com',
+    :domain =>         ENV['ROOT_URL'],
     :authentication => :plain
   }
-  config.action_mailer.default_url_options = { host: 'http://www.richardpic.com' }
+  config.action_mailer.default_url_options = { host: "http://#{ENV['ROOT_URL']}" }
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

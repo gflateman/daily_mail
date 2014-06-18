@@ -16,7 +16,7 @@ describe DigestMailer do
     end
 
     xit 'renders the sender email' do
-      expect(mail.from).to eq(["#{org.address}@richardpic.com"])
+      expect(mail.from).to eq(["#{org.address}@#{ENV['ROOT_URL']}"])
     end
 
     xit 'assigns @submissions' do
